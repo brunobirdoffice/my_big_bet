@@ -3,7 +3,7 @@ const schema = mongoose.Schema
 
 // UserStats Mapping for MongoDB
 let userStatsSchema = new schema({
-    _id: schema.Types.ObjectId,
+    _id: { type: schema.Types.ObjectId, required: true, auto: true, },
     league: { type: Schema.Types.ObjectId, ref: 'League' },
     user: { type: Schema.Types.ObjectId, ref: 'User' },
     point_counter: { type: Number, required: true, max: 10000 },

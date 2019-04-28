@@ -7,7 +7,7 @@ exports.createUser = (req, res) => {
     })
     user.save((err) => {
         if (err) {
-            res.status(500).send('user not created')
+            return res.status(500).send('user not created')
         }
         res.send(user)
     })
@@ -16,7 +16,7 @@ exports.createUser = (req, res) => {
 exports.getUser = (req, res) => {
     User.findById(req.params.id, (err, user) => {
         if (err) {
-            res.status(500).send('User not found')
+            return res.status(500).send('User not found')
         }
         res.send(user)
     })
@@ -28,7 +28,7 @@ exports.updateUser = (req, res) => {
         $set: req.body
     }, (err, user) => {
         if (err) {
-            res.status(500).send('User not found')
+            return res.status(500).send('User not found')
         }
         res.send(user)
     })
@@ -40,7 +40,7 @@ exports.deleteUser = (req, res) => {
         $set: req.body
     }, (err, user) => {
         if (err) {
-            res.status(500).send('User not found')
+            return res.status(500).send('User not found')
         }
         res.send(user)
     })
