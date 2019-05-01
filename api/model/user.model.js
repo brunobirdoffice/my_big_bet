@@ -5,9 +5,9 @@ const schema = mongoose.Schema
 // User Mapping for MongoDB
 let userSchema = new schema({
     _id: { type: schema.Types.ObjectId, required: true, auto: true, },
-    userName: { type: String, required: true, unique: true, max: 2500 },
+    userName: { type: String, required: true, unique: true, dropDups: true, max: 250 },
     passWord: { type: String, required: true, max: 250 },
-    role: { type: String, enum: ['Client', 'Admin'], default: 'Client' }
+    role: { type: String, enum: ['client', 'admin'], default: 'client' }
 })
 
 // hash password before save User
@@ -31,13 +31,9 @@ userSchema.pre('save', function (next) {
     }
 })
 
-userSchema.methods.verifyPassword = (pw) => {
-    bcrypt.compare(pw, this.password, (err, isMatch) => {
-        if (err) {
-            return err
-        }
-        return isMatch
-    })
+// check if password is the same
+userSchema.methods.verifyPassword = (passWord, user) => {
+    return bcrypt.compareSync(passWord, user.passWord)
 }
 
 module.exports = mongoose.model('User', userSchema)
