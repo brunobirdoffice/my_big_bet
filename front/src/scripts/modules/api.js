@@ -1,6 +1,6 @@
 const api = () => {
   return {
-    url: "http://api.local"
+    url: "http://localhost:3000"
   };
 };
 

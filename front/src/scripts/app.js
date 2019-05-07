@@ -1,4 +1,5 @@
 import api from "./modules/api";
+import loginator from "./modules/login";
 
 window.addEventListener("load", () => {
   /**
@@ -20,4 +21,6 @@ window.addEventListener("load", () => {
       }
     };
   }
+
+  loginator();
 });
