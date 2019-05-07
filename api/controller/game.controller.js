@@ -37,5 +37,5 @@ exports.populateLeague = async (req, res) => {
             }
         })
     })
-    if (!error) res.send('games saved')
+    if (!error) res.status(201).send('games saved')
 }

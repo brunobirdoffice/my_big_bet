@@ -9,7 +9,7 @@ exports.createUser = (req, res) => {
         if (err) {
             return res.status(500).send('user not created')
         }
-        res.send(user)
+        res.status(201).send(user)
     })
 }
 
@@ -24,7 +24,7 @@ exports.updateUser = (req, res) => {
             if (err) {
                 return res.status(500).send('user not saved')
             }
-            res.send(user)
+            res.status(203).send(user)
         })
     })
 }
@@ -34,7 +34,7 @@ exports.getUser = (req, res) => {
         if (err) {
             return res.status(500).send('User not found')
         }
-        res.send(user)
+        res.status(200).send(user)
     })
 }
 
@@ -46,7 +46,7 @@ exports.deleteUser = (req, res) => {
         if (err) {
             return res.status(500).send('User not found')
         }
-        res.send(user)
+        res.status(204).send(user)
     })
 }
 
@@ -55,6 +55,6 @@ exports.getAllUsers = (req, res) => {
         if (err) {
             return res.status(500).send('Users not found')
         }
-        res.send(users)
+        res.status(200).send(users)
     })
 }
