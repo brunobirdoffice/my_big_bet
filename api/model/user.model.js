@@ -5,7 +5,7 @@ const schema = mongoose.Schema
 // User Mapping for MongoDB
 let userSchema = new schema({
     _id: { type: schema.Types.ObjectId, required: true, auto: true, },
-    userName: { type: String, required: true, unique: true, dropDups: true, max: 250 },
+    userName: { type: String, required: true, unique: true, max: 250 },
     passWord: { type: String, required: true, max: 250 },
     role: { type: String, enum: ['client', 'admin'], default: 'client' }
 })

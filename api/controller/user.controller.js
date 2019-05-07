@@ -49,3 +49,12 @@ exports.deleteUser = (req, res) => {
         res.send(user)
     })
 }
+
+exports.getAllUsers = (req, res) => {
+    User.find({}, (err, users) => {
+        if (err) {
+            return res.status(500).send('Users not found')
+        }
+        res.send(users)
+    })
+}
