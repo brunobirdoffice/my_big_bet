@@ -12,3 +12,6 @@ exports.connectionToDb = () => {
 
 // Key JWT Token
 exports.jwtKey = 'fluctuat_nec_mergitur'
+
+//key api
+exports.apiKey = '8be74ba2332c4a0992846401a58aaaea'

@@ -7,8 +7,8 @@ const config = require('./config/main')
 const passportConfig = require('./config/passport')
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users.router')
+const gameRouter = require('./routes/games.route')
 
-const tokenApiFootBall = '8be74ba2332c4a0992846401a58aaaea'
 // Connection to Database
 config.connectionToDb()
 
@@ -16,7 +16,7 @@ config.connectionToDb()
 const app = express()
 app.use(logger('dev'))
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(passport.initialize());
 passportConfig
@@ -24,8 +24,11 @@ passportConfig
 // Default route
 app.use('/', indexRouter)
 
-// Sufix router for user
+// Prefix router for user
 app.use('/users', usersRouter)
+
+// Prefix router for game
+app.use('/games', gameRouter)
 
 // Authenticate route
 app.post('/login', function (req, res, next) {

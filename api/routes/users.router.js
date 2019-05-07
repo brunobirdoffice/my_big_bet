@@ -5,6 +5,9 @@ const router = express.Router()
 /* GET user . */
 router.get('/:id', userController.getUser)
 
+/* GET all users . */
+router.get('', userController.getAllUsers)
+
 /* Create user . */
 router.post('/post', userController.createUser)
 

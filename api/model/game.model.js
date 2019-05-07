@@ -8,7 +8,8 @@ let gameSchema = new schema({
     awayTeam: { type: String, required: true, max: 250 },
     score_homeTeam: { type: Number, required: true, max: 10 },
     score_awayTeam: { type: Number, required: true, max: 10 },
-    league: { type: Schema.Types.ObjectId, ref: 'League' }
+    gameDate: { type: Date, required: true },
+    league: { type: String, required: true, max: 30 }
 })
 
 module.exports = mongoose.model('Game', gameSchema)
