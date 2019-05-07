@@ -3,15 +3,15 @@ const userController = require('../controller/user.controller')
 const router = express.Router()
 
 /* GET user . */
-router.get('/get/:id', userController.getUser)
+router.get('/:id', userController.getUser)
 
 /* Create user . */
 router.post('/post', userController.createUser)
 
 /* Put user . */
-router.put('/put/:id', userController.updateUser)
+router.put('/:id', userController.updateUser)
 
 /* Put user . */
-router.delete('/delete/:id', userController.deleteUser)
+router.delete('/:id', userController.deleteUser)
 
 module.exports = router

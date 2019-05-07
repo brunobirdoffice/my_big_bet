@@ -2,7 +2,7 @@ const express = require('express')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const passport = require('passport')
-//const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 const config = require('./config/main')
 const passportConfig = require('./config/passport')
 const indexRouter = require('./routes/index')
@@ -19,17 +19,29 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(passport.initialize());
-passportConfig(passport)
+passportConfig
 
 // Default route
 app.use('/', indexRouter)
-app.use('/login', passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-        res.send(req.user);
-    }
-);
 
 // Sufix router for user
 app.use('/users', usersRouter)
+
+// Authenticate route
+app.post('/login', function (req, res, next) {
+    passport.authenticate('local', (err, user, message) => {
+        if (err) {
+            return next(err)
+        }
+        if (!user) {
+            return res.json(401, message)
+        }
+
+        //user has authenticated correctly => create a JWT token 
+        var token = jwt.sign({ username: user.userName }, config.jwtKey);
+        res.json({ token: token, userId: user._id, userRole: user.userRole, username: user.userName });
+
+    })(req, res, next);
+})
 
 module.exports = app
