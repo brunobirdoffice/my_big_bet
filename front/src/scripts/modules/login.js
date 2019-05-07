@@ -9,8 +9,8 @@ const loginator = () => {
     xhr(
       {
         method: "POST",
-        body: { username: username, password: password },
-        uri: `${api().url}/user/post`,
+        body: JSON.stringify({ "userName": username, "passWord": password}),
+        uri: `${api().url}/users/post`,
         headers: {
           "Content-Type": "application/json"
         },
@@ -30,7 +30,7 @@ const loginator = () => {
     xhr(
       {
         method: "POST",
-        body: { username: username, password: password },
+        body: JSON.stringify({ "userName": username, "passWord": password}),
         uri: `${api().url}/login`,
         headers: {
           "Content-Type": "application/json"
