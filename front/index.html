@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login | MyBigBet</title>
+  </head>
+
+  <body>
+
+    <header class="header">
+      <div class="logo">
+        <a href="index.html">
+          <img src="<%=require('./src/medias/images/ui/logo.png') %>" class="content" alt="">
+        </a>
+      </div>
+      <div class="title">
+        <h2>Connectez-vous</h2>
+      </div>
+      <div class="social-links">
+        <div class="social-link">
+          <a href="http://" target="_blank" rel="noopener noreferrer">
+            <img
+              src="<%=require('./src/medias/images/ui/logo-facebook.png') %>"
+              alt="Facebook"
+            />
+          </a>
+        </div>
+        <div class="social-link">
+          <a href="http://" target="_blank" rel="noopener noreferrer">
+            <img
+              src="<%=require('./src/medias/images/ui/logo-instagram.png') %>"
+              alt="Instagram"
+            />
+          </a>
+        </div>
+        <div class="social-link">
+          <a href="http://" target="_blank" rel="noopener noreferrer">
+            <img
+              src="<%=require('./src/medias/images/ui/logo-twitter.png') %>"
+              alt="Twitter"
+            />
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-container">
+      <div class="bloc-forms">
+        <form action="" class="form form--register">
+          <h3>Register :</h3>
+          <div class="inputs">
+            <input type="text" name="username-register" id="username-register" placeholder="Username">
+            <input type="password" name="password-register" id="password-register" placeholder="Password">
+            <button class="btn--blue btn-create">CREATE ACCOUNT</button>
+          </div>
+        </form>
+        <form action="" class="form form--login">
+          <h3>Login :</h3>
+          <div class="inputs">
+            <input type="text" name="username-login" id="username-login" placeholder="Username">
+            <input type="password" name="password-login" id="password-login" placeholder="Password">
+            <button class="btn--blue btn-login">LOGIN</button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <ul>
+        <li>
+          <a href="" target="_blank" rel="noopener noreferrer">
+            Plan du site
+          </a>
+        </li>
+        <li>
+          <a href="" target="_blank" rel="noopener noreferrer">
+            Mentions légales
+          </a>
+        </li>
+      </ul>
+    </footer>
+
+  </body>
+</html>

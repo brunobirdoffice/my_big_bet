@@ -1,0 +1,17 @@
+/**
+ * UI reusable elements
+ */
+
+.btn--blue {
+  border: none;
+  background: $color-blue;
+  color: $color-white;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 1.4rem;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
