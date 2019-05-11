@@ -24,10 +24,11 @@ exports.populateLeague = async (req, res) => {
         const game = new Game({
             homeTeam: element.homeTeam.name,
             awayTeam: element.awayTeam.name,
-            score_homeTeam: element.score.fullTime.homeTeam,
-            score_awayTeam: element.score.fullTime.awayTeam,
+            scoreHomeTeam: element.score.fullTime.homeTeam || 0,
+            scoreAwayTeam: element.score.fullTime.awayTeam || 0,
             gameDate: element.utcDate,
-            league: req.params.leagueName
+            league: req.params.leagueName,
+            stage: element.stage
         })
         game.save((err) => {
             if (err) {
@@ -38,4 +39,13 @@ exports.populateLeague = async (req, res) => {
         })
     })
     if (!error) res.status(201).send('games saved')
+}
+
+exports.getGamesLeague = (req, res) => {
+    Game.find({ league: req.params.leagueName }, {}, { sort: { gameDate: 1 } }, (err, Game) => {
+        if (err) {
+            return res.status(404).send(err.message)
+        }
+        res.status(200).send(Game)
+    })
 }

@@ -6,9 +6,9 @@ let userStatsSchema = new schema({
     _id: { type: schema.Types.ObjectId, required: true, auto: true, },
     league: { type: Schema.Types.ObjectId, ref: 'League' },
     user: { type: Schema.Types.ObjectId, ref: 'User' },
-    point_counter: { type: Number, required: true, max: 10000 },
-    perfect_counter: { type: Number, required: true, max: 10000 },
-    total_counter: { type: Number, required: true, max: 10000 }
+    pointCounter: { type: Number, required: true, max: 10000 },
+    perfectCounter: { type: Number, required: true, max: 10000 },
+    totalCounter: { type: Number, required: true, max: 10000 }
 })
 
 module.exports = mongoose.model('UserStats', userStatsSchema)

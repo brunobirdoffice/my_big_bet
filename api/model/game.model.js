@@ -6,10 +6,11 @@ let gameSchema = new schema({
     _id: { type: schema.Types.ObjectId, required: true, auto: true, },
     homeTeam: { type: String, required: true, max: 250 },
     awayTeam: { type: String, required: true, max: 250 },
-    score_homeTeam: { type: Number, required: true, max: 10 },
-    score_awayTeam: { type: Number, required: true, max: 10 },
+    scoreHomeTeam: { type: Number, required: true, max: 10 },
+    scoreAwayTeam: { type: Number, required: true, max: 10 },
     gameDate: { type: Date, required: true },
-    league: { type: String, required: true, max: 30 }
+    league: { type: String, required: true, max: 30 },
+    stage: { type: String, required: true, max: 30 }
 })
 
 module.exports = mongoose.model('Game', gameSchema)

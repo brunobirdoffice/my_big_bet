@@ -7,8 +7,10 @@ let leagueSchema = new schema({
     name: { type: String, required: true, max: 250 },
     gameLeague: { type: String, required: true, max: 250 },
     secretKey: { type: String, required: true, max: 250 },
-    start_date: { type: Date, required: true, default: Date.now },
-    end_date: { type: Date, required: false },
+    startDate: { type: Date, required: true, default: Date.now },
+    endDate: { type: Date, required: false },
+    gameRemaining: { type: Number, required: true }
+
 })
 
 module.exports = mongoose.model('League', leagueSchema)
