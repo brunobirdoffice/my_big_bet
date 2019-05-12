@@ -5,9 +5,9 @@ const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const config = require('./config/main')
 const passportConfig = require('./config/passport')
-const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users.router')
 const gameRouter = require('./routes/games.route')
+const betRouter = require('./routes/bets.route')
 
 // Connection to Database
 config.connectionToDb()
@@ -21,8 +21,10 @@ app.use(cookieParser())
 app.use(passport.initialize());
 passportConfig
 
-// Default route
-app.use('/', indexRouter)
+/* GET home page. */
+app.get('/', (req, res) => {
+    res.send('<h1>My Big Bet Api v1.0</h1>');
+});
 
 // Prefix router for user
 app.use('/users', usersRouter)
@@ -30,8 +32,11 @@ app.use('/users', usersRouter)
 // Prefix router for game
 app.use('/games', gameRouter)
 
+// Prefix router for bet
+app.use('/bets', betRouter)
+
 // Authenticate route
-app.post('/login', function (req, res, next) {
+app.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, message) => {
         if (err) {
             return next(err)
@@ -41,8 +46,8 @@ app.post('/login', function (req, res, next) {
         }
 
         //user has authenticated correctly => create a JWT token 
-        var token = jwt.sign({ username: user.userName }, config.jwtKey);
-        res.json({ token: token, userId: user._id, userRole: user.userRole, username: user.userName });
+        var token = jwt.sign({ username: user.userName }, config.jwtKey, { expiresIn: '1 day' });
+        res.json({ token: token, user: user });
 
     })(req, res, next);
 })

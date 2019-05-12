@@ -24,8 +24,8 @@ exports.populateLeague = async (req, res) => {
         const game = new Game({
             homeTeam: element.homeTeam.name,
             awayTeam: element.awayTeam.name,
-            scoreHomeTeam: element.score.fullTime.homeTeam || 0,
-            scoreAwayTeam: element.score.fullTime.awayTeam || 0,
+            scoreHomeTeam: element.score.fullTime.homeTeam,
+            scoreAwayTeam: element.score.fullTime.awayTeam,
             gameDate: element.utcDate,
             league: req.params.leagueName,
             stage: element.stage

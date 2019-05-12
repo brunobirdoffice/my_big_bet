@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+const uniqueValidator = require('mongoose-unique-validator')
 const schema = mongoose.Schema
 
 // User Mapping for MongoDB
@@ -10,10 +11,13 @@ let userSchema = new schema({
     role: { type: String, enum: ['client', 'admin'], default: 'client' }
 })
 
+// Add plugin Unique Validator 
+userSchema.plugin(uniqueValidator);
+
 // hash password before save User
 userSchema.pre('save', function (next) {
     let user = this
-    if (this.isModified('passWord') || this.isNew) {
+    if (this.isNew) {
         bcrypt.genSalt(10, function (err, salt) {
             if (err) {
                 return next(err)
@@ -23,6 +27,27 @@ userSchema.pre('save', function (next) {
                     return next(err)
                 }
                 user.passWord = hash
+                next()
+            })
+        })
+    } else {
+        return next()
+    }
+})
+
+// hash password before update User
+userSchema.pre('findOneAndUpdate', function (next) {
+    let user = this
+    if (this._update.passWord) {
+        bcrypt.genSalt(10, function (err, salt) {
+            if (err) {
+                return next(err)
+            }
+            bcrypt.hash(user._update.passWord, salt, function (err, hash) {
+                if (err) {
+                    return next(err)
+                }
+                user._update.passWord = hash
                 next()
             })
         })

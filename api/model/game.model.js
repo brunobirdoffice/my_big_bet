@@ -6,8 +6,8 @@ let gameSchema = new schema({
     _id: { type: schema.Types.ObjectId, required: true, auto: true, },
     homeTeam: { type: String, required: true, max: 250 },
     awayTeam: { type: String, required: true, max: 250 },
-    scoreHomeTeam: { type: Number, required: true, max: 10 },
-    scoreAwayTeam: { type: Number, required: true, max: 10 },
+    scoreHomeTeam: { type: Number, required: false, max: 20 },
+    scoreAwayTeam: { type: Number, required: false, max: 20 },
     gameDate: { type: Date, required: true },
     league: { type: String, required: true, max: 30 },
     stage: { type: String, required: true, max: 30 }

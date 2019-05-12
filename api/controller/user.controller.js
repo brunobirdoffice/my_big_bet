@@ -7,32 +7,29 @@ exports.createUser = (req, res) => {
     })
     user.save((err) => {
         if (err) {
-            return res.status(500).send('user not created')
+            return res.status(500).send('user not created: "' + err.message + '"')
         }
         res.status(201).send(user)
     })
 }
 
 exports.updateUser = (req, res) => {
-    User.findById(req.params.id, (err, user) => {
+    const query = { _id: req.params.id }
+    User.findOneAndUpdate(query, {
+        userName: req.body.userName,
+        passWord: req.body.passWord
+    }, { new: true }, (err, user) => {
         if (err) {
-            return res.status(500).send('User not found')
+            return res.status(500).send('user not update: "' + err.message + '"')
         }
-        user.userName = req.body.userName
-        user.passWord = req.body.passWord
-        user.save((err) => {
-            if (err) {
-                return res.status(500).send('user not saved')
-            }
-            res.status(203).send(user)
-        })
+        res.status(201).send(user)
     })
 }
 
 exports.getUser = (req, res) => {
     User.findById(req.params.id, (err, user) => {
         if (err) {
-            return res.status(500).send('User not found')
+            return res.status(500).send('User not found: "' + err.message + '"')
         }
         res.status(200).send(user)
     })
@@ -44,7 +41,7 @@ exports.deleteUser = (req, res) => {
         $set: req.body
     }, (err, user) => {
         if (err) {
-            return res.status(500).send('User not found')
+            return res.status(500).send('User not deleted: "' + err.message + '"')
         }
         res.status(204).send(user)
     })
@@ -53,7 +50,7 @@ exports.deleteUser = (req, res) => {
 exports.getAllUsers = (req, res) => {
     User.find({}, (err, users) => {
         if (err) {
-            return res.status(500).send('Users not found')
+            return res.status(500).send('Users not found: "' + err.message + '"')
         }
         res.status(200).send(users)
     })
