@@ -37,13 +37,11 @@ exports.getUser = (req, res) => {
 
 exports.deleteUser = (req, res) => {
     const query = { _id: req.params.id }
-    User.remove(query, {
-        $set: req.body
-    }, (err, user) => {
+    User.findByIdAndRemove(query, (err, user) => {
         if (err) {
             return res.status(500).send('User not deleted: "' + err.message + '"')
         }
-        res.status(204).send(user)
+        res.status(204).send('user deleted')
     })
 }
 
