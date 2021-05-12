@@ -42,7 +42,7 @@
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "swiper": "^4.4.2",
+    "swiper": "^6.5.1",
     "ts-loader": "^5.3.1",
     "typescript": "^3.3.0-dev.20181205",
     "url-loader": "^1.1.2",
